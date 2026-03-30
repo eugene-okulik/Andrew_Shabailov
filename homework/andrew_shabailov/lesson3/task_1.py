@@ -5,7 +5,7 @@ summ = a + b
 print(summ)
 
 sub = a - b
-print(summ)
+print(sub)
 
 mul = a * b
 print(mul)
