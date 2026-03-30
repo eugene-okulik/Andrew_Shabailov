@@ -1,9 +1,9 @@
-my_dict = {'tuple':'tuple', 'list':'list', 'dict':'dict', 'set':'set'}
+my_dict = {'tuple': 'tuple', 'list': 'list', 'dict': 'dict', 'set': 'set'}
 print(my_dict)
 
 my_dict['tuple'] = ('one', 2, 'three', 4, 'five',)
 my_dict['list'] = ['first', 'second', 'third', 'fourth', '5']
-my_dict['dict'] = {'car':'blue', 'bus':'orange', 'wi-fi':'free', 'job':'well-paid'}
+my_dict['dict'] = {'car': 'blue', 'bus': 'orange', 'wi-fi': 'free', 'job': 'well-paid'}
 my_dict['set'] = {1, 3.14, "hello", False, (1, 2, 3)}
 print(my_dict)
 
