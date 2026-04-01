@@ -19,7 +19,7 @@ print(popped)
 
 
 list_dict = my_dict['dict']
-list_dict[('i am a tuple',)]= 'fixed'
+list_dict[('i am a tuple',)] = 'fixed'
 print(list_dict)
 
 delete_item = list_dict.pop('bus')
