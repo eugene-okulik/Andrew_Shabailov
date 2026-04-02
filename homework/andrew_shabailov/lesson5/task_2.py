@@ -1,15 +1,15 @@
-result_1 = 'результат операции: 42'
-result_2 = 'результат операции: 514'
-result_3 = 'результат работы программы: 9'
+txt1 = 'результат операции: 42'
+txt2 = 'результат операции: 514'
+txt3 = 'результат работы программы: 9'
 
-num1 = result_1[-2::]
-_num1 = int(num1) + 10
-print(_num1)
+index_1 = txt1.index(':') + 1
+index_2 = txt2.index(':') + 1
+index_3 = txt3.index(':') + 1
 
-num2 = result_2[-3::]
-_num2 = int(num2) + 10
-print(_num2)
+res_1 = txt1[index_1::].lstrip()
+res_2 = txt2[index_2::].lstrip()
+res_3 = txt3[index_3::].lstrip()
 
-num3 = result_3[-1]
-_num3 = int(num3) + 10
-print(_num3)
+print(res_1)
+print(res_2)
+print(res_3)
