@@ -10,6 +10,10 @@ res_1 = txt1[index_1::].lstrip()
 res_2 = txt2[index_2::].lstrip()
 res_3 = txt3[index_3::].lstrip()
 
-print(res_1)
-print(res_2)
-print(res_3)
+num1 = int(res_1) + 10
+num2 = int(res_2) + 10
+num3 = int(res_3) + 10
+
+print(num1)
+print(num2)
+print(num3)
