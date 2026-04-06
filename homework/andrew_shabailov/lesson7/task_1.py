@@ -18,4 +18,3 @@ while True:
     if user_input == 2:
         print('Congratulations! You guessed the number!')
         break
-
