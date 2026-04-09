@@ -1,9 +1,9 @@
 import random
 
 salary = int(input('Enter your salary: '))
-bonus = bool(random.randint(0, 1))
+bonus = random.choice([True, False])
 
-if bonus == 0:
+if bonus:
     print(f'{salary}, {bonus} - ${int(salary + random.random())}')
 else:
     print(f'{salary}, {bonus} - ${int(salary)}')
