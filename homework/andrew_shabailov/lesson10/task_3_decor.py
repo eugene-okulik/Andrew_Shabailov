@@ -1,11 +1,9 @@
 first = int(input("Enter first number: "))
 second = int(input("Enter second number: "))
 
+
 def user_operation(func):
-
-
     def wrapper(first, second):
-
         if first < 0 or second < 0:
             operation = '*'
         elif first == second:
@@ -16,6 +14,7 @@ def user_operation(func):
             operation = '/'
 
         return func(first, second, operation)
+
     return wrapper
 
 
