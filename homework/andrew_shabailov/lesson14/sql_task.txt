@@ -5,7 +5,7 @@
 -- INSERT INTO `books` (title, taken_by_student_id) VALUES ('SQL in programming', 22845)
 
 -- INSERT INTO `groups` (title, start_date, end_date) VALUES ('python_automation', '1 Mar', '30 Sep')
--- INSERT INTO `students` (name, second_name, group_id) VALUES ('Andrew', 'Shabailov', 22741)
+-- UPDATE `students` SET group_id = 22741 WHERE id = 22845
 
 -- INSERT INTO `subjects` (title) VALUES ('Material Flow')
 -- INSERT INTO `subjects` (title) VALUES ('Material World')
