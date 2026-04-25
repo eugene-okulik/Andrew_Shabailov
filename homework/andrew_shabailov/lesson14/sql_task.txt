@@ -1,0 +1,59 @@
+-- INSERT INTO `students` (name, second_name) VALUES ('Andrew', 'Shabailov')
+
+-- INSERT INTO `books` (title, taken_by_student_id) VALUES ('Python programming language', 22845)
+-- INSERT INTO `books` (title, taken_by_student_id) VALUES ('Issues in Python', 22845)
+-- INSERT INTO `books` (title, taken_by_student_id) VALUES ('SQL in programming', 22845)
+
+-- INSERT INTO `groups` (title, start_date, end_date) VALUES ('python_automation', '1 Mar', '30 Sep')
+-- UPDATE `students` SET group_id = 22741 WHERE id = 22845
+
+-- INSERT INTO `subjects` (title) VALUES ('Material Flow')
+-- INSERT INTO `subjects` (title) VALUES ('Material World')
+-- INSERT INTO `subjects` (title) VALUES ('Material AI')
+
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('User Interface', 22844)
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('User Experience', 22844)
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('Stones', 22845)
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('Animals', 22845)
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('Grok', 22846)
+-- INSERT INTO `lessons` (title, subject_id) VALUES ('AI assistant', 22846)
+
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (9, 76111, 22845)
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (10, 76112, 22845)
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (7, 76113, 22845)
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (7, 76114, 22845)
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (6, 76115, 22845)
+-- INSERT INTO `marks` (value, lesson_id, student_id) VALUES (5, 76116, 22845)
+
+-- SELECT * FROM `students` where id = 22845
+-- SELECT * FROM `books` where taken_by_student_id = 22845
+-- SELECT * FROM `groups` where id = 22741
+-- SELECT * FROM `lessons` where subject_id = 22844 or subject_id = 22845 or subject_id = 22846
+-- SELECT * FROM `subjects` where id = 22844 or id = 22845 or id = 22846
+-- SELECT * FROM `marks` where student_id = 22845
+
+
+SELECT
+    s.id AS Id,
+    s.name AS Name,
+    s.second_name AS 'Last Name',
+    g.title AS 'Group',
+    b.title AS Book,
+    m.value AS Mark
+
+FROM students s
+
+LEFT JOIN `groups` g
+    ON g.id = s.group_id
+
+LEFT JOIN books b
+    ON b.taken_by_student_id = s.id
+
+LEFT JOIN marks m
+    ON m.student_id = s.id
+
+WHERE s.id = 22845;
+
+
+
+
