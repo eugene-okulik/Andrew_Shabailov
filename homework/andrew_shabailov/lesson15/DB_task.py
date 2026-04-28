@@ -33,10 +33,10 @@ cursor.executemany(query_4, [
     ('love', student_id),
     ('money', student_id)
 ])
+
 db.commit()
 
 subject_query = "INSERT INTO subjects (title) VALUES (%s)"
-
 subjects = ['fantasy', 'history', 'oop']
 subject_ids = {}
 
@@ -45,7 +45,6 @@ for title in subjects:
     subject_ids[title] = cursor.lastrowid
 
 db.commit()
-
 print(f'subject id: {', '.join(f"{k} - {v}" for k, v in subject_ids.items())}')
 
 lesson_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
@@ -63,7 +62,6 @@ for title, subject_id in data:
     lesson_ids[title] = cursor.lastrowid
 
 db.commit()
-
 print(f'lesson id: {', '.join(f"{k} - {v}" for k, v in lesson_ids.items())}')
 
 query_11 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
@@ -72,6 +70,7 @@ cursor.executemany(query_11, [
     ('3', lesson_ids['mat2'], student_id),
     ('5', lesson_ids['mat3'], student_id),
 ])
+
 db.commit()
 
 query_12 = f"SELECT * FROM marks where student_id = {student_id}"
