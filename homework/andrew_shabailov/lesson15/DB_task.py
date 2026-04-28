@@ -35,53 +35,42 @@ cursor.executemany(query_4, [
 ])
 db.commit()
 
-query_5 = "INSERT INTO subjects (title) VALUES (%s)"
-sub_title_1 = ('fantasy',)
-cursor.execute(query_5, sub_title_1)
-subject_id_1 = cursor.lastrowid
-print(f'subject_id_1: {subject_id_1}')
+subject_query = "INSERT INTO subjects (title) VALUES (%s)"
+
+subjects = ['fantasy', 'history', 'oop']
+subject_ids = {}
+
+for title in subjects:
+    cursor.execute(subject_query, (title,))
+    subject_ids[title] = cursor.lastrowid
+
 db.commit()
 
-query_6 = "INSERT INTO subjects (title) VALUES (%s)"
-sub_title_2 = ('history',)
-cursor.execute(query_6, sub_title_2)
-subject_id_2 = cursor.lastrowid
-print(f'subject_id_2: {subject_id_2}')
+print(f'subject id: {', '.join(f"{k} - {v}" for k, v in subject_ids.items())}')
+
+lesson_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
+
+data = [
+    ('mat1', subject_ids['fantasy']),
+    ('mat2', subject_ids['history']),
+    ('mat3', subject_ids['oop']),
+]
+
+lesson_ids = {}
+
+for title, subject_id in data:
+    cursor.execute(lesson_query, (title, subject_id))
+    lesson_ids[title] = cursor.lastrowid
+
 db.commit()
 
-query_7 = "INSERT INTO subjects (title) VALUES (%s)"
-sub_title_3 = ('oop',)
-cursor.execute(query_7, sub_title_3)
-subject_id_3 = cursor.lastrowid
-print(f'subject_id_3: {subject_id_3}')
-db.commit()
-
-query_8 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-lesson_value_1 = ('mat1', subject_id_1)
-cursor.execute(query_8, lesson_value_1)
-lesson_id_1 = cursor.lastrowid
-print(f'lesson_id_1: {lesson_id_1}')
-db.commit()
-
-query_9 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-lesson_value_2 = ('mat2', subject_id_2)
-cursor.execute(query_9, lesson_value_2)
-lesson_id_2 = cursor.lastrowid
-print(f'lesson_id_2: {lesson_id_2}')
-db.commit()
-
-query_10 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
-lesson_value_3 = ('mat3', subject_id_3)
-cursor.execute(query_10, lesson_value_3)
-lesson_id_3 = cursor.lastrowid
-print(f'lesson_id_3: {lesson_id_3}')
-db.commit()
+print(f'lesson id: {', '.join(f"{k} - {v}" for k, v in lesson_ids.items())}')
 
 query_11 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 cursor.executemany(query_11, [
-    ('8', lesson_id_1, student_id),
-    ('3', lesson_id_2, student_id),
-    ('5', lesson_id_3, student_id),
+    ('8', lesson_ids['mat1'], student_id),
+    ('3', lesson_ids['mat2'], student_id),
+    ('5', lesson_ids['mat3'], student_id),
 ])
 db.commit()
 
