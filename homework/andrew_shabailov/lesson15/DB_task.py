@@ -45,7 +45,7 @@ for title in subjects:
     subject_ids[title] = cursor.lastrowid
 
 db.commit()
-print(f'subject id: {', '.join(f"{k} - {v}" for k, v in subject_ids.items())}')
+print(f"subject id: {', '.join(f'{k} - {v}' for k, v in subject_ids.items())}")
 
 lesson_query = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
 
@@ -62,7 +62,7 @@ for title, subject_id in data:
     lesson_ids[title] = cursor.lastrowid
 
 db.commit()
-print(f'lesson id: {', '.join(f"{k} - {v}" for k, v in lesson_ids.items())}')
+print(f"lesson id: {', '.join(f'{k} - {v}' for k, v in lesson_ids.items())}")
 
 query_11 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 cursor.executemany(query_11, [
