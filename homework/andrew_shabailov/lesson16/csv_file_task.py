@@ -6,6 +6,7 @@ file_path = Path(
     r'D:\projects\homework\homework\eugene_okulik\Lesson_16\hw_data\data.csv'
 )
 
+
 def print_missing(cursor, table, field, value):
     cursor.execute(
         f"SELECT 1 FROM `{table}` WHERE `{field}` = %s LIMIT 1",
@@ -13,6 +14,7 @@ def print_missing(cursor, table, field, value):
     )
     if cursor.fetchone() is None:
         print(f'Нет в базе: {table}.{field} = {value}')
+
 
 db, cursor = get_cursor()
 
