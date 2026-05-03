@@ -1,24 +1,28 @@
 import csv
-from pathlib import Path
-from secrets import get_cursor
+import os
+from secrets import cursor
 
-file_path = Path(
-    r'D:\projects\homework\homework\eugene_okulik\Lesson_16\hw_data\data.csv'
-)
+
+base_dir = os.path.dirname(__file__)
+home_dir = os.path.dirname(os.path.dirname(base_dir))
+eugene_dir = os.path.join(home_dir, 'eugene_okulik', 'Lesson_16', 'hw_data', 'data.csv')
+
+
+with open(eugene_dir, 'r', encoding='utf-8') as csv_file:
+    reader = csv.DictReader(csv_file)
 
 
 def print_missing(cursor, table, field, value):
     cursor.execute(
-        f"SELECT 1 FROM `{table}` WHERE `{field}` = %s LIMIT 1",
+        f"SELECT * FROM `{table}` WHERE `{field}` = %s LIMIT 1",
         (value,)
     )
     if cursor.fetchone() is None:
         print(f'Нет в базе: {table}.{field} = {value}')
 
 
-db, cursor = get_cursor()
 
-with open(file_path, newline='', encoding='utf-8') as csv_file:
+with open(eugene_dir, 'r', encoding='utf-8') as csv_file:
     reader = csv.DictReader(csv_file)
 
     for row in reader:
@@ -37,4 +41,3 @@ with open(file_path, newline='', encoding='utf-8') as csv_file:
         print_missing(cursor, 'marks', 'value', mark_value)
 
 cursor.close()
-db.close()
