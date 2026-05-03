@@ -21,7 +21,6 @@ def print_missing(cursor, table, field, value):
         print(f'Нет в базе: {table}.{field} = {value}')
 
 
-
 with open(eugene_dir, 'r', encoding='utf-8') as csv_file:
     reader = csv.DictReader(csv_file)
 
