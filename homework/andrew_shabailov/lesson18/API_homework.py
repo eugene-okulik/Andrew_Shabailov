@@ -3,6 +3,7 @@ import requests
 
 base_url = 'http://objapi.course.qa-practice.com/object'
 
+
 def get_all_objects():
     response = requests.get(base_url)
     object_id = response.json()['data'][0]['id']
