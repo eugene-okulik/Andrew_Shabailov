@@ -4,23 +4,29 @@ import pytest
 
 base_url = 'http://objapi.course.qa-practice.com/object'
 
-data_d = {'name': 'Andrew',
-            'data': {
-                'student': 'Python automation course',
-                'teacher': 'Eugene_Okulik',
-            }}
+data_d = {
+    'name': 'Andrew',
+    'data': {
+        'student': 'Python automation course',
+        'teacher': 'Eugene_Okulik',
+    }
+}
 
-data_upd = {'name': 'Andrew_UPD',
-            'data': {
-                'student': 'Python automation course_UPD',
-                'teacher': 'Eugene_Okulik_UPD',
-            }}
+data_upd = {
+    'name': 'Andrew_UPD',
+    'data': {
+        'student': 'Python automation course_UPD',
+        'teacher': 'Eugene_Okulik_UPD',
+    }
+}
 
-patch_data = {'name': 'Andrew_PATCH',
-            'data': {
-                'student': 'Python automation course_PATCH',
-                'teacher': 'Eugene_Okulik_PATCH',
-            }}
+patch_data = {
+    'name': 'Andrew_PATCH',
+    'data': {
+        'student': 'Python automation course_PATCH',
+        'teacher': 'Eugene_Okulik_PATCH',
+    }
+}
 
 
 @pytest.fixture()
