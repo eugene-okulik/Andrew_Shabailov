@@ -63,7 +63,7 @@ def test_get_all_objects(start_end_testing, before_after_testing):
 
 
 @pytest.mark.parametrize('created_item_id', [data_d, data_upd, patch_data], indirect=True)
-def test_add_item(before_after_testing, start_end_testing,created_item_id):
+def test_add_item(before_after_testing, start_end_testing, created_item_id):
     assert created_item_id is not None, 'Item was not added'
 
 
