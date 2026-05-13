@@ -30,22 +30,12 @@ patch_data = {
 
 
 @pytest.fixture()
-def new_post_id():
+def create_new_item():
     response = requests.post(url=base_url, json=data_d)
-    new_post_id = response.json()['id']
-    yield new_post_id
+    new_item_id = response.json()['id']
+    yield new_item_id
     print('Item deleting')
-    requests.delete(url=f'{base_url}/{new_post_id}')
-
-
-@pytest.fixture()
-def created_item_id(request):
-    payload = request.param
-    response = requests.post(url=base_url, json=payload)
-    item_id = response.json()['id']
-    yield item_id
-    print('Item deleting')
-    requests.delete(url=f'{base_url}/{item_id}')
+    requests.delete(url=f'{base_url}/{new_item_id}')
 
 
 @pytest.fixture(scope='session')
@@ -68,23 +58,31 @@ def test_get_all_objects(start_end_testing, before_after_testing):
     assert object_id == 1, 'Object not found'
 
 
-@pytest.mark.parametrize('created_item_id', [data_d, data_upd, patch_data], indirect=True)
-def test_add_item(before_after_testing, start_end_testing, created_item_id):
-    assert created_item_id is not None, 'Item was not added'
+@pytest.mark.parametrize('payload', [data_d, data_upd, patch_data])
+def test_add_item(before_after_testing, start_end_testing, payload):
+    response = requests.post(url=base_url, json=payload)
+    new_item_id = response.json()['id']
+    assert response.status_code == 200, 'Item was not created'
+    print('Item deleting')
+    requests.delete(url=f'{base_url}/{new_item_id}')
 
 
-def test_get_info_by_id(before_after_testing, start_end_testing, new_post_id):
-    response = requests.get(f'{base_url}/{new_post_id}')
+def test_get_info_by_id(before_after_testing, start_end_testing, create_new_item):
+    response = requests.get(f'{base_url}/{create_new_item}')
     assert response.status_code == 200, 'Object not found'
 
 
 @pytest.mark.critical
-def test_put_object(before_after_testing, start_end_testing, new_post_id):
-    response = requests.put(f'{base_url}/{new_post_id}', json=data_upd)
+def test_put_object(before_after_testing, start_end_testing, create_new_item):
+    response = requests.put(f'{base_url}/{create_new_item}', json=data_upd)
     assert response.status_code == 200, 'Item was not updated'
 
 
 @pytest.mark.medium
-def test_patch_object(before_after_testing, start_end_testing, new_post_id):
-    response = requests.patch(f'{base_url}/{new_post_id}', json=patch_data)
+def test_patch_object(before_after_testing, start_end_testing, create_new_item):
+    response = requests.patch(f'{base_url}/{create_new_item}', json=patch_data)
     assert response.status_code == 200, 'Item was not patched'
+
+def test_delete_object(before_after_testing, start_end_testing, create_new_item):
+    response = requests.delete(f'{base_url}/{create_new_item}')
+    assert response.text == f'Object with id {create_new_item} successfully deleted', 'Wrong response text'
