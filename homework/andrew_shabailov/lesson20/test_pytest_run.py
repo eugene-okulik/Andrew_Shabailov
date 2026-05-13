@@ -83,6 +83,7 @@ def test_patch_object(before_after_testing, start_end_testing, create_new_item):
     response = requests.patch(f'{base_url}/{create_new_item}', json=patch_data)
     assert response.status_code == 200, 'Item was not patched'
 
+
 def test_delete_object(before_after_testing, start_end_testing, create_new_item):
     response = requests.delete(f'{base_url}/{create_new_item}')
     assert response.text == f'Object with id {create_new_item} successfully deleted', 'Wrong response text'
