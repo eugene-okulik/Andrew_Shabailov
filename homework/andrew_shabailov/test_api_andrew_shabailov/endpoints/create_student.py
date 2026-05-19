@@ -15,7 +15,6 @@ class CreateStudent:
         }
     }
 
-
     @allure.step('Create new student')
     def create_student(self, payload):
         self.post_response = requests.post(
@@ -25,11 +24,9 @@ class CreateStudent:
         self.json = self.post_response.json()
         return self.post_response
 
-
     @allure.step('Check that student created successfully')
     def check_student_is_created(self, status_code):
         assert status_code == 200, 'Status code is NOT 200'
-
 
     @allure.step('Check that student has appropriate ID')
     def check_studentID_is_created(self, student_id):

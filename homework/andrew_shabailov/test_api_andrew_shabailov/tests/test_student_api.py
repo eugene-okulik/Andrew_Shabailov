@@ -55,7 +55,6 @@ n_patch_data = {
 TEST_DATA = [data_d, data_upd, patch_data]
 NEGATIVE_TEST_DATA = [n_data_d, n_data_upd, n_patch_data]
 
-
 @pytest.mark.positive
 @pytest.mark.parametrize('payload', TEST_DATA)
 def test_add_student(start_end_testing, before_after_testing, payload, create_student_endpoint,
@@ -79,7 +78,6 @@ def test_add_student(start_end_testing, before_after_testing, payload, create_st
         delete_student = DeleteStudent()
         delete_student.delete_student(student_id)
 
-
 @pytest.mark.positive
 def test_get_info_by_student_id(start_end_testing, before_after_testing, create_student_endpoint,
                                 read_student_endpoint, delete_student_endpoint):
@@ -93,7 +91,6 @@ def test_get_info_by_student_id(start_end_testing, before_after_testing, create_
 
     delete_student = DeleteStudent()
     delete_student.delete_student(student_id)
-
 
 @pytest.mark.positive
 def test_update_student(start_end_testing, before_after_testing, create_student_endpoint,
@@ -109,7 +106,6 @@ def test_update_student(start_end_testing, before_after_testing, create_student_
 
     delete_student = DeleteStudent()
     delete_student.delete_student(student_id)
-
 
 @pytest.mark.positive
 def test_patch_student(start_end_testing, before_after_testing, create_student_endpoint,
@@ -127,7 +123,6 @@ def test_patch_student(start_end_testing, before_after_testing, create_student_e
     delete_student = DeleteStudent()
     delete_student.delete_student(student_id)
 
-
 @pytest.mark.positive
 def test_delete_student(start_end_testing, before_after_testing, create_student_endpoint,
                         delete_student_endpoint):
@@ -139,7 +134,6 @@ def test_delete_student(start_end_testing, before_after_testing, create_student_
     delete_student = DeleteStudent()
     delete_student.delete_student(student_id)
     delete_student.check_student_is_deleted()
-
 
 @pytest.mark.negative
 @pytest.mark.parametrize('payload', NEGATIVE_TEST_DATA)

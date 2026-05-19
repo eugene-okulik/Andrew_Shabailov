@@ -7,7 +7,6 @@ class PatchStudent(CreateStudent):
     base_url = CreateStudent.base_url
     patch_response = None
 
-
     @allure.title('Update student information partially')
     @allure.description("Проверяем обновление определенных данных о студенте")
     @allure.severity(allure.severity_level.NORMAL)
@@ -17,7 +16,6 @@ class PatchStudent(CreateStudent):
         self.patch_response = requests.patch(f'{self.base_url}/'
                                             f'{student_id}', json=payload)
         return self.patch_response
-
 
     @allure.description("Проверяем обновление данных о студенте прошло успешно")
     @allure.severity(allure.severity_level.NORMAL)

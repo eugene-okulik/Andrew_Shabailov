@@ -7,7 +7,6 @@ class ReadStudent(CreateStudent):
     base_url = CreateStudent.base_url
     read_response = None
 
-
     @allure.story("Get student information")
     @allure.title('Read student information')
     @allure.description("Проверяем наличие информации о студенте")
@@ -17,7 +16,6 @@ class ReadStudent(CreateStudent):
     def read_student(self, student_id):
         self.read_response = requests.get(f'{self.base_url}/{student_id}')
         assert self.read_response.status_code == 200, 'Student not read'
-
 
     @allure.title('Read student name')
     @allure.description("Проверяем ожидаемое имя студента")
@@ -29,7 +27,6 @@ class ReadStudent(CreateStudent):
         self.read_response = requests.get(f'{self.base_url}/{student_id}')
         assert self.read_response.json()['name'] == student_name, 'Student names not match'
 
-
     @allure.title('Read student data')
     @allure.description("Проверяем ожидаемые данные о курсе студента")
     @allure.severity(allure.severity_level.NORMAL)
@@ -39,7 +36,6 @@ class ReadStudent(CreateStudent):
     def check_student_data(self, student_id, student_data):
         self.read_response = requests.get(f'{self.base_url}/{student_id}')
         assert self.read_response.json()['data']['student'] == student_data, 'Student data not match'
-
 
     @allure.title('Read teacher name')
     @allure.description("Проверяем ожидаемые данные об учителе студента")

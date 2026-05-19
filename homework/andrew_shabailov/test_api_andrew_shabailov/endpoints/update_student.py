@@ -2,11 +2,9 @@ import requests
 import allure
 from endpoints.create_student import CreateStudent
 
-
 class UpdateStudent(CreateStudent):
     base_url = CreateStudent.base_url
     update_response = None
-
 
     @allure.title('Update student information fully')
     @allure.description("Проверяем обновление всей информации о студенте")
@@ -17,7 +15,6 @@ class UpdateStudent(CreateStudent):
         self.update_response = requests.put(f'{self.base_url}/'
                                             f'{student_id}', json=payload)
         return self.update_response
-
 
     @allure.title('Update student information partially')
     @allure.description("Проверяем обновление данных о студенте прошло успешно")

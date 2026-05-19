@@ -6,7 +6,6 @@ from endpoints.create_student import CreateStudent
 class DeleteStudent(CreateStudent):
     delete_response = None
 
-
     @allure.title('Delete student')
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.tag("api", "smoke", "regression")
@@ -15,7 +14,6 @@ class DeleteStudent(CreateStudent):
         self.base_url = CreateStudent.base_url
         self.delete_response = requests.delete(f'{self.base_url}/{student_id}')
         return self.delete_response
-
 
     @allure.title('Delete student')
     @allure.severity(allure.severity_level.CRITICAL)
