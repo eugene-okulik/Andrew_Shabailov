@@ -74,7 +74,9 @@ def test_add_student(
         student_data = create_student.json['data']['student']
         teacher_data = create_student.json['data']['teacher']
 
-        create_student.check_student_is_created(create_student.post_response.status_code)
+        create_student.check_student_is_created(
+            create_student.post_response.status_code
+        )
         create_student.check_studentID_is_created(student_id)
 
         read_student = ReadStudent()
@@ -140,7 +142,6 @@ def test_patch_student(
 
     patch_student = PatchStudent()
     patch_student.patch_student(student_id, payload=patch_data)
-
     patch_student.patch_status_code_is_200()
 
     delete_student = DeleteStudent()
@@ -179,7 +180,9 @@ def test_add_student_with_negative_data(
 
         student_id = create_student.json['id']
 
-        create_student.check_student_is_created(create_student.post_response.status_code)
+        create_student.check_student_is_created(
+            create_student.post_response.status_code
+        )
         create_student.check_studentID_is_created(student_id)
 
         delete_student = DeleteStudent()
