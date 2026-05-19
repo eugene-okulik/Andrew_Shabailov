@@ -181,7 +181,7 @@ def test_add_student_with_negative_data(
     student_id = create_student.json['id']
 
     create_student.check_student_is_created(
-    create_student.post_response.status_code
+        create_student.post_response.status_code
     )
     create_student.check_studentID_is_created(student_id)
 
