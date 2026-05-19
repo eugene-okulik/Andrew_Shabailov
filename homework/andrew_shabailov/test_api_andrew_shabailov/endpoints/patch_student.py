@@ -13,8 +13,7 @@ class PatchStudent(CreateStudent):
     @allure.tag("api", "smoke", "regression")
     @allure.step('Update new student partially')
     def patch_student(self, student_id, payload):
-        self.patch_response = requests.patch(f'{self.base_url}/'
-                                            f'{student_id}', json=payload)
+        self.patch_response = requests.patch(f'{self.base_url}/{student_id}', json=payload)
         return self.patch_response
 
     @allure.description("Проверяем обновление данных о студенте прошло успешно")

@@ -2,6 +2,7 @@ import requests
 import allure
 from endpoints.create_student import CreateStudent
 
+
 class UpdateStudent(CreateStudent):
     base_url = CreateStudent.base_url
     update_response = None
