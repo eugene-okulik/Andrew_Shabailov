@@ -66,26 +66,26 @@ def test_add_student(
         read_student_endpoint,
         delete_student_endpoint
 ):
-        create_student = CreateStudent()
-        create_student.create_student(payload=payload)
+    create_student = CreateStudent()
+    create_student.create_student(payload=payload)
 
-        student_id = create_student.json['id']
-        student_name = create_student.json['name']
-        student_data = create_student.json['data']['student']
-        teacher_data = create_student.json['data']['teacher']
+    student_id = create_student.json['id']
+    student_name = create_student.json['name']
+    student_data = create_student.json['data']['student']
+    teacher_data = create_student.json['data']['teacher']
 
-        create_student.check_student_is_created(
-            create_student.post_response.status_code
-        )
-        create_student.check_studentID_is_created(student_id)
+    create_student.check_student_is_created(
+        create_student.post_response.status_code
+    )
+    create_student.check_studentID_is_created(student_id)
 
-        read_student = ReadStudent()
-        read_student.check_student_name(student_id, student_name)
-        read_student.check_student_data(student_id, student_data)
-        read_student.check_teacher_data(student_id, teacher_data)
+    read_student = ReadStudent()
+    read_student.check_student_name(student_id, student_name)
+    read_student.check_student_data(student_id, student_data)
+    read_student.check_teacher_data(student_id, teacher_data)
 
-        delete_student = DeleteStudent()
-        delete_student.delete_student(student_id)
+    delete_student = DeleteStudent()
+    delete_student.delete_student(student_id)
 
 
 @pytest.mark.positive
@@ -175,15 +175,15 @@ def test_add_student_with_negative_data(
         read_student_endpoint,
         delete_student_endpoint
 ):
-        create_student = CreateStudent()
-        create_student.create_student(payload=payload)
+    create_student = CreateStudent()
+    create_student.create_student(payload=payload)
 
-        student_id = create_student.json['id']
+    student_id = create_student.json['id']
 
-        create_student.check_student_is_created(
-            create_student.post_response.status_code
-        )
-        create_student.check_studentID_is_created(student_id)
+    create_student.check_student_is_created(
+    create_student.post_response.status_code
+    )
+    create_student.check_studentID_is_created(student_id)
 
-        delete_student = DeleteStudent()
-        delete_student.delete_student(student_id)
+    delete_student = DeleteStudent()
+    delete_student.delete_student(student_id)
