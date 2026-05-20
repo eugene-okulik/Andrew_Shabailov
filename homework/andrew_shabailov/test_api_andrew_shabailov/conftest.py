@@ -7,12 +7,12 @@ from endpoints.patch_student import PatchStudent
 
 
 data_d = {
-        'name': 'Andrew',
-        'data': {
-            'student': 'Python automation course',
-            'teacher': 'Eugene_Okulik',
-        }
+    'name': 'Andrew',
+    'data': {
+        'student': 'Python automation course',
+        'teacher': 'Eugene_Okulik'
     }
+}
 
 
 @pytest.fixture()

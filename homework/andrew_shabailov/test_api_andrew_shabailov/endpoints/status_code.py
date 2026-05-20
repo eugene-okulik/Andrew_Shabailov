@@ -1,5 +1,6 @@
 import allure
 
+
 class StatusCode:
 
     @allure.step('Check that status code is 200')
