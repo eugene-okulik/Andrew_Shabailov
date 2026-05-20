@@ -21,4 +21,4 @@ class PatchStudent(CreateStudent):
     @allure.tag("api", "smoke", "regression")
     @allure.step('Check that student was updated partially')
     def patch_status_code_is_200(self):
-        assert self.patch_response.status_code == 200, 'Item was not partially updated'
+        self.check_status_code_is_200(self.patch_response)

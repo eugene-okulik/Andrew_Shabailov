@@ -1,32 +1,26 @@
 import requests
 import allure
+from endpoints.status_code import StatusCode
 
 
-class CreateStudent:
+class CreateStudent(StatusCode):
     base_url = 'http://objapi.course.qa-practice.com/object'
-    post_response = None
+    response = None
     json = None
     headers = {'Content-Type': 'application/json'}
-    data_d = {
-        'name': 'Andrew',
-        'data': {
-            'student': 'Python automation course',
-            'teacher': 'Eugene_Okulik',
-        }
-    }
 
     @allure.step('Create new student')
     def create_student(self, payload):
-        self.post_response = requests.post(
+        self.response = requests.post(
             url=self.base_url,
             json=payload,
         )
-        self.json = self.post_response.json()
-        return self.post_response
+        self.json = self.response.json()
+        return self.response
 
     @allure.step('Check that student created successfully')
-    def check_student_is_created(self, status_code):
-        assert status_code == 200, 'Status code is NOT 200'
+    def create_status_code_is_200(self):
+        self.check_status_code_is_200(self.response)
 
     @allure.step('Check that student has appropriate ID')
     def check_studentID_is_created(self, student_id):

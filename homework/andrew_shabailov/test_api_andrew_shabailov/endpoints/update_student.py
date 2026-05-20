@@ -23,4 +23,4 @@ class UpdateStudent(CreateStudent):
     @allure.tag("api", "smoke", "regression")
     @allure.step('Success updating student information')
     def update_status_code_is_200(self):
-        assert self.update_response.status_code == 200, 'Item was not updated'
+        self.check_status_code_is_200(self.update_response)

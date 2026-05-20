@@ -6,6 +6,15 @@ from endpoints.delete_student import DeleteStudent
 from endpoints.patch_student import PatchStudent
 
 
+data_d = {
+        'name': 'Andrew',
+        'data': {
+            'student': 'Python automation course',
+            'teacher': 'Eugene_Okulik',
+        }
+    }
+
+
 @pytest.fixture()
 def create_student_endpoint():
     return CreateStudent()
@@ -29,6 +38,25 @@ def delete_student_endpoint():
 @pytest.fixture()
 def patch_student_endpoint():
     return PatchStudent()
+
+
+@pytest.fixture()
+def student_id():
+    create_student = CreateStudent()
+    create_student.create_student(payload=data_d)
+    student_id = create_student.json['id']
+    yield student_id
+    print('Item deleting')
+    delete_student = DeleteStudent()
+    delete_student.delete_student(student_id)
+
+
+@pytest.fixture()
+def student_id_to_delete():
+    create_student = CreateStudent()
+    create_student.create_student(payload=data_d)
+    student_id_to_delete = create_student.json['id']
+    return student_id_to_delete
 
 
 @pytest.fixture(scope='session')
