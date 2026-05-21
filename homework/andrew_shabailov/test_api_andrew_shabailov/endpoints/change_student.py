@@ -1,9 +1,9 @@
 import allure
 import requests
-from endpoints.read_student import ReadStudent
+from endpoints.common_base import Base
 
 
-class ChangeStudent(ReadStudent):
+class ChangeStudent(Base):
 
     @allure.title('Read student name')
     @allure.description("Проверяем ожидаемое имя студента")
@@ -12,8 +12,8 @@ class ChangeStudent(ReadStudent):
     @allure.story("Get student information")
     @allure.step('There is appropriate student name')
     def check_student_name(self, student_id, student_name):
-        self.read_response = requests.get(f'{self.base_url}/{student_id}')
-        assert self.read_response.json()['name'] == student_name, \
+        self.response = requests.get(f'{self.base_url}/{student_id}')
+        assert self.response.json()['name'] == student_name, \
             'Student names not match'
 
     @allure.title('Read student data')
@@ -23,8 +23,8 @@ class ChangeStudent(ReadStudent):
     @allure.story("Get student information")
     @allure.step('There is appropriate student information')
     def check_student_data(self, student_id, student_data):
-        self.read_response = requests.get(f'{self.base_url}/{student_id}')
-        assert self.read_response.json()['data']['student'] == student_data, \
+        self.response = requests.get(f'{self.base_url}/{student_id}')
+        assert self.response.json()['data']['student'] == student_data, \
             'Student data not match'
 
     @allure.title('Read teacher name')
@@ -34,6 +34,6 @@ class ChangeStudent(ReadStudent):
     @allure.story("Get student information")
     @allure.step('There is appropriate teacher data')
     def check_teacher_data(self, student_id, teacher_data):
-        self.read_response = requests.get(f'{self.base_url}/{student_id}')
-        assert self.read_response.json()['data']['teacher'] == teacher_data, \
+        self.response = requests.get(f'{self.base_url}/{student_id}')
+        assert self.response.json()['data']['teacher'] == teacher_data, \
             'Teacher data not match'

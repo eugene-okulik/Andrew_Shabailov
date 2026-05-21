@@ -1,16 +1,14 @@
 import requests
 import allure
-from endpoints.create_student import CreateStudent
+from endpoints.common_base import Base
 
 
-class ReadStudent(CreateStudent):
-    base_url = CreateStudent.base_url
-    read_response = None
+class ReadStudent(Base):
 
     @allure.step('Send GET request for student')
     def read_student(self, student_id):
-        self.read_response = requests.get(f'{self.base_url}/{student_id}')
-        return self.read_response
+        self.response = requests.get(f'{self.base_url}/{student_id}')
+        return self.response
 
     @allure.story("Get student information")
     @allure.title('Read student information')
@@ -19,4 +17,4 @@ class ReadStudent(CreateStudent):
     @allure.tag("api", "smoke", "regression")
     @allure.step('Check status code is 200')
     def read_status_code_is_200(self):
-        self.check_status_code_is_200(self.read_response)
+        self.check_status_code_is_200()
