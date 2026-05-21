@@ -11,8 +11,9 @@ class UpdateStudent(Base):
     @allure.tag("api", "smoke", "regression")
     @allure.step('Update student information')
     def update_student(self, student_id, payload):
-        self.response = requests.put(f'{self.base_url}/'
-                                            f'{student_id}', json=payload)
+        self.response = requests.put(
+            f'{self.base_url}/{student_id}', json=payload
+        )
         return self.response
 
     @allure.title('Update student information partially')
