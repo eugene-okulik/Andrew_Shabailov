@@ -4,6 +4,7 @@ from endpoints.read_student import ReadStudent
 from endpoints.update_student import UpdateStudent
 from endpoints.delete_student import DeleteStudent
 from endpoints.patch_student import PatchStudent
+from endpoints.common_base import Base
 
 
 data_d = {
@@ -38,6 +39,11 @@ def delete_student_endpoint():
 @pytest.fixture()
 def patch_student_endpoint():
     return PatchStudent()
+
+
+@pytest.fixture()
+def base_student_endpoint():
+    return Base()
 
 
 @pytest.fixture()
