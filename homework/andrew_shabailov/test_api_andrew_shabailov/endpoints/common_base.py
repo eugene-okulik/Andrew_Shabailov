@@ -9,7 +9,6 @@ class Base:
     def __init__(self):
         self.response = None
 
-
     @property
     def json(self):
         if self.response is not None:
