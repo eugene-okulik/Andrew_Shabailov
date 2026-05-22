@@ -15,11 +15,3 @@ class UpdateStudent(Base):
             f'{self.base_url}/{student_id}', json=payload
         )
         return self.response
-
-    @allure.title('Update student information partially')
-    @allure.description("Проверяем обновление данных о студенте прошло успешно")
-    @allure.severity(allure.severity_level.NORMAL)
-    @allure.tag("api", "smoke", "regression")
-    @allure.step('Success updating student information')
-    def update_status_code_is_200(self):
-        self.check_status_code_is_200()

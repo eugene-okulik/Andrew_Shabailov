@@ -47,21 +47,18 @@ def base_student_endpoint():
 
 
 @pytest.fixture()
-def student_id():
-    create_student = CreateStudent()
-    create_student.create_student(payload=data_d)
-    student_id = create_student.json['id']
+def student_id(create_student_endpoint, delete_student_endpoint):
+    create_student_endpoint.create_student(payload=data_d)
+    student_id = create_student_endpoint.json['id']
     yield student_id
     print('Item deleting')
-    delete_student = DeleteStudent()
-    delete_student.delete_student(student_id)
+    delete_student_endpoint.delete_student(student_id)
 
 
 @pytest.fixture()
-def student_id_to_delete():
-    create_student = CreateStudent()
-    create_student.create_student(payload=data_d)
-    student_id_to_delete = create_student.json['id']
+def student_id_to_delete(create_student_endpoint):
+    create_student_endpoint.create_student(payload=data_d)
+    student_id_to_delete = create_student_endpoint.json['id']
     return student_id_to_delete
 
 

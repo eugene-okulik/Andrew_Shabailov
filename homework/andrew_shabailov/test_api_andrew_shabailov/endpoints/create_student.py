@@ -11,12 +11,7 @@ class CreateStudent(Base):
             url=self.base_url,
             json=payload,
         )
-        self.json = self.response.json()
         return self.response
-
-    @allure.step('Check that student created successfully')
-    def create_status_code_is_200(self):
-        self.check_status_code_is_200()
 
     @allure.step('Check that student has appropriate ID')
     def check_studentID_is_created(self, student_id):
