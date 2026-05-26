@@ -77,7 +77,7 @@ class AuthSession:
         return response
 
 
-class Student(HttpUser):
+class ControlModule(HttpUser):
     host = "https://dev.codiq.io"
     wait_time = between(1, 3)
 
