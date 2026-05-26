@@ -86,7 +86,7 @@ class AuthSession:
 
 class ControlModule(HttpUser):
     host = "https://dev.codiq.io"
-    wait_time = between(1, 4)
+    wait_time = between(1, 3)
 
     def on_start(self):
         self.auth = AuthSession(
