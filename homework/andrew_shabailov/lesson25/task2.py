@@ -38,7 +38,9 @@ subject_input = browser.find_element(By.ID, 'subjectsInput')
 browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", subject_input)
 subject_input.send_keys('Computer Science')
 
-option = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'subjects-auto-complete__option') and text()='Computer Science']")))
+option = wait.until(EC.element_to_be_clickable(
+    (By.XPATH, "//div[contains(@class, 'subjects-auto-complete__option') and text()='Computer Science']"))
+)
 actions = ActionChains(browser)
 actions.move_to_element(option).click().perform()
 
