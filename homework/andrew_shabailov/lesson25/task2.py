@@ -1,60 +1,64 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import ActionChains
 
 
-options = Options()
+@pytest.fixture
+def driver():
+    chrome_driver = webdriver.Chrome()
+    chrome_driver.maximize_window()
+    yield chrome_driver
 
-browser = webdriver.Chrome(options=options)
-browser.maximize_window()
 
-wait = WebDriverWait(browser, 2)
+def test_fill_the_student_registration_form(driver):
+    wait = WebDriverWait(driver, 5)
 
-browser.get('https://demoqa.com/automation-practice-form')
+    driver.get('https://demoqa.com/automation-practice-form')
+    driver.execute_script("var el = document.getElementById('fixedban'); if(el) el.style.display = 'none';")
+    driver.execute_script("var el = document.querySelector('footer'); if(el) el.style.display = 'none';")
 
-browser.execute_script("var el = document.getElementById('fixedban'); if(el) el.style.display = 'none';")
-browser.execute_script("var el = document.querySelector('footer'); if(el) el.style.display = 'none';")
+    driver.find_element(By.ID, 'firstName').send_keys('Andrew')
+    driver.find_element(By.ID, 'lastName').send_keys('Shabailov')
+    driver.find_element(By.ID, 'userEmail').send_keys('test@mail.com')
+    driver.find_element(By.CSS_SELECTOR, "label[for='gender-radio-1']").click()
+    driver.find_element(By.ID, 'userNumber').send_keys('3442434242')
 
-browser.find_element(By.ID, 'firstName').send_keys('Andrew')
-browser.find_element(By.ID, 'lastName').send_keys('Shabailov')
-browser.find_element(By.ID, 'userEmail').send_keys('test@mail.com')
-browser.find_element(By.CSS_SELECTOR, "label[for='gender-radio-1']").click()
-browser.find_element(By.ID, 'userNumber').send_keys('3442434242')
+    date_field = driver.find_element(By.ID, 'dateOfBirthInput')
+    date_field.click()
+    date_field.send_keys(Keys.CONTROL + 'a')
+    date_field.send_keys("18 Nov 1992" + Keys.ENTER)
 
-date_field = browser.find_element(By.ID, 'dateOfBirthInput')
-date_field.click()
-date_field.send_keys(Keys.CONTROL + 'a')
-date_field.send_keys("18 Nov 1992" + Keys.ENTER)
+    driver.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-1']").click()
+    driver.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-2']").click()
+    driver.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-3']").click()
 
-browser.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-1']").click()
-browser.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-2']").click()
-browser.find_element(By.CSS_SELECTOR, "label[for='hobbies-checkbox-3']").click()
+    subject_input = driver.find_element(By.ID, 'subjectsInput')
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", subject_input)
+    subject_input.send_keys('Computer Science')
 
-subject_input = browser.find_element(By.ID, 'subjectsInput')
-browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", subject_input)
-subject_input.send_keys('Computer Science')
+    option = wait.until(EC.element_to_be_clickable(
+        (By.XPATH, "//div[contains(@class, 'subjects-auto-complete__option') and text()='Computer Science']"))
+    )
+    option.click()
 
-option = wait.until(EC.element_to_be_clickable(
-    (By.XPATH, "//div[contains(@class, 'subjects-auto-complete__option') and text()='Computer Science']"))
-)
-actions = ActionChains(browser)
-actions.move_to_element(option).click().perform()
+    driver.find_element(By.ID, 'currentAddress').send_keys('Nice City')
 
-browser.find_element(By.ID, 'currentAddress').send_keys('Nice City')
+    state_input = wait.until(EC.presence_of_element_located((By.ID, "react-select-3-input")))
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", state_input)
+    state_input.send_keys('Rajasthan')
+    state_input.send_keys(Keys.ENTER)
 
-state_input = wait.until(EC.presence_of_element_located((By.ID, "react-select-3-input")))
-browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", state_input)
-state_input.send_keys('Rajasthan')
-state_input.send_keys(Keys.TAB)
+    city_input = wait.until(EC.presence_of_element_located((By.ID, "react-select-4-input")))
+    city_input.send_keys('Jaipur')
+    city_input.send_keys(Keys.ENTER)
 
-city_input = wait.until(EC.presence_of_element_located((By.ID, "react-select-4-input")))
-city_input.send_keys('Jaipur')
-city_input.send_keys(Keys.TAB)
+    submit_btn = driver.find_element(By.ID, 'submit')
+    driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", submit_btn)
+    submit_btn.click()
 
-browser.find_element(By.ID, 'submit').click()
+    wait.until(EC.presence_of_element_located((By.ID, "example-modal-sizes-title-lg")))
 
-browser.save_screenshot('screenshot_result.png')
+    driver.save_screenshot('screenshot_result.png')
