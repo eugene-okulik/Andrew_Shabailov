@@ -1,0 +1,9 @@
+venv
+.idea
+.DS_Store
+.pytest_cache
+.venv
+__pycache__
+qadana.yaml
+creds.py
+.env
