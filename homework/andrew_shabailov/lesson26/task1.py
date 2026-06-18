@@ -41,5 +41,5 @@ def test_open_close_new_tab_with_item(driver):
 
     product_text = product_title_element.text
 
-    assert "Customizable Desk" in product_text,\
+    assert "Customizable Desk" in product_text, \
         f"Expected -'Customizable Desk', but got '{product_text}'"
