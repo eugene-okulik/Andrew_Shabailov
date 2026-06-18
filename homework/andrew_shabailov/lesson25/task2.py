@@ -59,6 +59,6 @@ def test_fill_the_student_registration_form(driver):
     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", submit_btn)
     submit_btn.click()
 
-    wait.until(EC.presence_of_element_located((By.ID, "example-modal-sizes-title-lg")))
+    print(driver.find_element(By.CSS_SELECTOR, ".table-striped").text)
 
     driver.save_screenshot('screenshot_result.png')
