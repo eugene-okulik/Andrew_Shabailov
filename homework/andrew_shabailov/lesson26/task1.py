@@ -14,7 +14,7 @@ def driver():
     yield chrome_driver
 
 
-def test_open_first_item_in_new_tab(driver):
+def test_open_close_new_tab_with_item(driver):
     driver.get('http://testshop.qa-practice.com/')
     card = driver.find_element(By.CSS_SELECTOR, 'a[href="/shop/customizable-desk-9"]')
     ActionChains(driver) \

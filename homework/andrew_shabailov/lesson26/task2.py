@@ -24,7 +24,6 @@ def test_user_choice(driver):
         (By.CSS_SELECTOR, ':has([content="Customizable Desk"]) .a-submit'))
     )
     cart_btn.click()
-
     product_text = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, 'td>strong.product_display_name'))
     ).text
