@@ -1,5 +1,4 @@
-import time
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 
 def test_fill_auth_form(page: Page):
@@ -32,5 +31,3 @@ def test_fill_auth_form(page: Page):
     page.get_by_role("option", name="Jaiselmer").click()
 
     page.get_by_role("button", name="Submit").click()
-
-    time.sleep(3)
