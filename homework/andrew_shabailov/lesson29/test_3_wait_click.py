@@ -7,6 +7,6 @@ def test_clickable_button_after_timeout(page: Page):
     color_button = page.locator('#colorChange')
 
     expect(color_button).to_have_class(re.compile(r'.*text-danger.*'), timeout=10000)
-    expect(color_button, f'"Color Change" button remains inactive').to_be_enabled()
+    expect(color_button, '"Color Change" button remains inactive').to_be_enabled()
 
     color_button.click()
