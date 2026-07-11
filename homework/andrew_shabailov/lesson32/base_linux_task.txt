@@ -1,0 +1,36 @@
+Task 1 part 2:
+Go to first line in file - g
+Go to last line in file - G
+Forward one window - f
+Forward one line - e
+Backward one line - y
+Search forward for matching line - /pattern
+Search backward for matching line - ?pattern
+Repeat previous search - n
+Repeat previous search in reverse direction - N
+
+
+Task 2:
+stat /dev/null - character special file
+stat /dev/zero - character special file
+stat /dev/sda - No such file or directory
+stat /dev/tty - character special file, c
+stat /root - directory, 
+stat /etc/passwd - regular file
+stat /proc/mounts - symbolic link
+stat /bin/ls - regular file
+stat /bin/zcat - regular file
+
+ls -l /dev/null - c
+ls -l /dev/zero - c
+ls -l /dev/sda - No such file or directory
+ls -l /dev/tty - c
+ls -l /root -  ls: cannot open directory '/root': Permission denied
+ls -l /etc/passwd - usual file, -
+ls -l /proc/mounts - /proc/mounts -> self/mounts
+ls -l /bin/ls - usual file, -
+ls -l /bin/zcat - usual file, -
+
+
+
+
