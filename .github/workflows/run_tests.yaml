@@ -1,6 +1,8 @@
 name: api autotests
 
 on:
+  push:
+    branches: [ andrew_shabailov_homework_36 ]
   workflow_dispatch:
 
 jobs:
