@@ -9,7 +9,7 @@ jobs:
     name: run autotests
     defaults:
       run:
-        working-directory: andrew_shabailov/test_api_andrew_shabailov
+        working-directory: homework/andrew_shabailov/test_api_andrew_shabailov
     steps:
       - name: Checkout autotests
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
         if: always()
         with:
           name: allure-results
-          path: andrew_shabailov/test_api_andrew_shabailov/allure-results
+          path: homework/andrew_shabailov/test_api_andrew_shabailov/allure-results
           retention-days: 30
 
       - name: Setup Java
@@ -52,5 +52,5 @@ jobs:
         if: always()
         with:
           name: allure-report
-          path: andrew_shabailov/test_api_andrew_shabailov/allure-report
+          path: homework/andrew_shabailov/test_api_andrew_shabailov/allure-report
           retention-days: 30
