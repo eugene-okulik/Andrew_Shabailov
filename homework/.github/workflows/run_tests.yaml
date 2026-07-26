@@ -1,0 +1,56 @@
+name: Python autotests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    name: run autotests
+    defaults:
+      run:
+        working-directory: andrew_shabailov/test_api_andrew_shabailov
+    steps:
+      - name: Checkout autotests
+        uses: actions/checkout@v4
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest --alluredir=allure-results
+        continue-on-error: true
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-results
+          path: andrew_shabailov/test_api_andrew_shabailov/allure-results
+          retention-days: 30
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        if: always()
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          npm install -g allure-commandline --silent
+          allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: allure-report
+          path: andrew_shabailov/test_api_andrew_shabailov/allure-report
+          retention-days: 30
