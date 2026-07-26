@@ -12,9 +12,10 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.12'
       - name: Install dependencies
+        working-directory: homework/andrew_shabailov/test_api_andrew_shabailov
         run: pip install -r requirements.txt
-      - name: run tests
+      - name: Run tests
+        working-directory: homework/andrew_shabailov/test_api_andrew_shabailov
         run: pytest
-      
