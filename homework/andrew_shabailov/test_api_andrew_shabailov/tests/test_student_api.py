@@ -1,9 +1,4 @@
 import pytest
-from endpoints.create_student import CreateStudent
-from endpoints.read_student import ReadStudent
-from endpoints.update_student import UpdateStudent
-from endpoints.delete_student import DeleteStudent
-from endpoints.patch_student import PatchStudent
 from endpoints.common_base import Base
 
 
